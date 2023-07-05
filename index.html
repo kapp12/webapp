@@ -12,7 +12,7 @@
 
 <script>
     let tg = window.Telegram.WebApp
-    user = tg.initData
+    user = tg.initDataUnsafe.user.id
 
     document.getElementById('h').innerHTML = JSON.stringify(user)
 
