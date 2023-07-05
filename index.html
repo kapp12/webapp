@@ -18,7 +18,9 @@
 <script>
     let tg = window.Telegram.WebApp
     let user = tg.initData
-    let wa = WebAppInitData
+    let wa = tg.WebAppInitData
+
+    tg.expand()
 
     document.getElementById('p1').innerHTML = JSON.stringify(user)
 
