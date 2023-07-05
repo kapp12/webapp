@@ -16,6 +16,9 @@
 
     document.getElementById('h').innerHTML = JSON.stringify(user)
 
+    tg.MainButton.text = 'Send'
+    tg.MainButton.show()
+
     let data = "data"
     tg.sendData(data)
 </script>
