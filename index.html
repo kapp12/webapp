@@ -7,29 +7,24 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <p id="p1">Nothing</p>
 
     <p id="p2">Nothing</p>
 
-    <p id="p3">Nothing</p>
+    <p id="p1">Nothing</p>
 
 </body>
 
 <script>
     let tg = window.Telegram.WebApp
-    let user = tg.initData
+
     let wa = tg.initDataUnsafe
 
-    tg.expand()
-
-    document.getElementById('p1').innerHTML = JSON.stringify(user)
+    document.getElementById('p1').innerHTML = JSON.stringify(window.navigator.userAgent)
 
     document.getElementById('p2').innerHTML = JSON.stringify(wa)
 
     tg.MainButton.text = 'Send'
     tg.MainButton.show()
 
-    let data = "data"
-    tg.sendData(data)
 </script>
 </html>
