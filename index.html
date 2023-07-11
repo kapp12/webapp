@@ -5,26 +5,339 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Кофейня n</title>
 </head>
+
+<style>
+    
+header{
+    display: flex;
+    justify-content: space-between;
+}    
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+.products{
+    max-width: 100%;
+    max-height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    color: #373a36;
+    flex-grow: 1;
+    max-height: 44px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.goods{
+    border: 1px solid #878480;
+    opacity: 1;
+    margin: 10px;
+    display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.size{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+}
+
+.variant{
+    border: 1px solid #878480;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+button {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+button:hover,
+button:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.button-17 {
+    margin: 8px;
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .8px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 12px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #a93608;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #935508;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+</style>
+
 <body>
+    <header class="header" id="myHeader">
+        
+        <span id='back'><button onclick="BackButton()">< Back</button></span>
+        <span id='cart'><button onclick="">Cart <span id="cartSum"></span></button></span>
+   
+    </header>
+    <div class="cat-filter">
+        <button class="button-17">Coffee</button>
+        <button class="button-17">Bakery</button>
+    </div>
+    <div id="products">
+        <p id="cat1">Category 1
+            <div class="catprod">
+                <article class="goods" id="1">
+                    <img src="/public/1.png" alt="latte">
+                    <div class="name">Latte</div>
+                    
+                    <div class="size">
+                        <span class="variant" data-id="11" data-price="120" onclick="addCart(this)">
+                            <div>200 ml</div>
+                            <div>120 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="12" data-price="150" onclick="addCart(this)">
+                            <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="13" data-price="190" onclick="addCart(this)">
+                            <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
+                        </span>
+                    </div>
+                </article>
 
-    <p id="p2">Nothing</p>
+                <article class="goods" id="2">
+                    <img src="/public/2.png" alt="Mokko">
+                    <div class="name">Mokko</div>
+                    
+                    <div class="size">
+                        <span class="variant" data-id="21" data-price="120" onclick="addCart(this)">
+                            <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="22" data-price="150" onclick="addCart(this)">
+                            <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="23" data-price="190" onclick="addCart(this)">
+                            <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
+                        </span>
+                    </div>
+                </article>
 
-    <p id="p1">Nothing</p>
+                <article class="goods" id="4">
+                    <img src="/public/4.png" alt="Espresso">
+                    <div class="name">Espresso</div>
+                    
+                    <div class="size">
+                        <span class="variant" data-id="41" data-price="120" onclick="addCart(this)">
+                            <div>200 ml</div>
+                            <div>120 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="42" data-price="150" onclick="addCart(this)">
+                            <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
+                        </span>
+                        <span class="variant" data-id="43" data-price="190" onclick="addCart(this)">
+                            <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
+                        </span>
+                    </div>
+                </article>
 
+            </div>
+        </p>
+    </div>
 </body>
 
 <script>
-    let tg = window.Telegram.WebApp
 
-    let wa = tg.initDataUnsafe
+let tg = window.Telegram.WebApp
 
-    document.getElementById('p1').innerHTML = JSON.stringify(window.navigator.userAgent)
+//let wa = tg.initDataUnsafe
 
-    document.getElementById('p2').innerHTML = JSON.stringify(wa)
+//document.getElementById('p1').innerHTML = JSON.stringify(window.navigator.userAgent)
 
-    tg.MainButton.text = 'Send'
-    //tg.MainButton.show()
+//document.getElementById('p2').innerHTML = JSON.stringify(wa)
+
+
+let cart = {total: 0 , items:{}}
+let cartSum = 0
+let cartItems = 0
+
+function addCart(el) {
+    console.log(el.dataset.id)
+
+    cart.items[el.dataset.id] = (cart.items[el.dataset.id]+1) || 1 ;
+
+    cartSum += parseInt(el.dataset.price)
+    cart["total"] = cartSum
+
+    updateCart()
+}
+
+function updateCart() {
+    document.getElementById("cartSum").innerHTML = cartSum
+}
+
+async function SendCart() {
+    const res = await fetch("/api/order",
+{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(cart)
+})
+
+ if (res.status == 203){
+    console.log("Order Send");
+ }
+
+ ClearCard()
+
+}
+
+function ClearCard() {
+    cart = {total: 0 , items:{}}
+    cartSum = 0
+    updateCart()
+}
+
+window.onscroll = function() {FixHeader()};
+
+var header = document.getElementById("myHeader");
+
+var sticky = header.offsetTop;
+
+function FixHeader() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+
+function BackButton() {
+    var BackButton = tg.BackButton;
+    BackButton.show() 
+}
+
 
 </script>
+
 </html>
