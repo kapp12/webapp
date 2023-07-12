@@ -362,7 +362,9 @@ function updateCart() {
 
 async function SendCart() {
     const res = await fetch("http://79.137.207.181/api/order",
-{
+{   
+    mode: 'no-cors',
+    cache: 'no-cache',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
