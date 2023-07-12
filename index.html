@@ -5,15 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Кофейня n</title>
+    <title>Кофейня N</title>
 </head>
 
 <style>
     
 header{
-    display: flex;
-    justify-content: space-between;
+  background: #fff;
+  position: relative;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  width: 100%
 }    
+
+.wrap-header{
+  border-radius: 8px;
+  background-color: #d0c9c0;
+  padding: 8px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  
+}
 
 .sticky {
   position: fixed;
@@ -22,7 +37,7 @@ header{
 }
 
 .sticky + .content {
-  padding-top: 102px;
+  /*padding-top: 102px;*/
 }
 
 .products{
@@ -43,11 +58,15 @@ header{
 
 .goods{
     border: 1px solid #878480;
+    border-radius: 8px;
     opacity: 1;
     margin: 10px;
+    padding: 8px;
     display: flex;
 flex-direction: column;
 align-items: center;
+
+box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 img{
@@ -67,16 +86,17 @@ img{
 
 .variant{
     border: 1px solid #878480;
+    border-radius: 8px;
     margin: 10px;
     padding: 10px;
-    position: relative;
+   /* position: relative;*/
 }
 
 button {
   align-items: center;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
+  border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
@@ -189,14 +209,54 @@ button:active {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
+.cat-filter{
+  display: none;
+}
+
+.canvas{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal{
+  z-index: 9;
+  display: none;
+  position: fixed;
+  background-color: #fefefe;
+  border-radius: 8px;
+  margin: 0px;
+  padding: 2px;
+  border: 1px solid #161313;
+  left: 5%;
+  top: 20%;
+  width: 90%; /* Full width */
+  height: 60%; /* Full height */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@keyframes animatetop {
+  from {top: 100%; opacity: 0}
+  to {top: 20%; opacity: 1}
+}
+
 </style>
 
 <body>
     <header class="header" id="myHeader">
-        
+        <div class="wrap-header">
         <span id='back'><button onclick="BackButton()">< Back</button></span>
-        <span id='cart'><button onclick="">Cart <span id="cartSum"></span></button></span>
-   
+        <span id='cart'><button onclick="OpenCart()"><svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M22 12.5L21.1667 15M21.1667 15L20 18.5H15.5L14.5 15H21.1667Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/> <path d="M16.5 20.51L16.51 20.4989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/> <path d="M19.5 20.51L19.51 20.4989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/> <path d="M2 18C2 14.134 5.13401 11 9 11C10.635 11 12.1391 11.5606 13.3306 12.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/> </svg> <span id="cartSum"></span></button></span>
+        </div>
     </header>
     <div class="cat-filter">
         <button class="button-17">Coffee</button>
@@ -206,21 +266,10 @@ button:active {
         <p id="cat1">Category 1
             <div class="catprod">
                 <article class="goods" id="1">
-                    <img src="https://i.ibb.co/6yLh87K/1-png.png" alt="latte">
+                    <img src="https://i.ibb.co/0tD0NGQ/3-png.jpg" alt="latte">
                     <div class="name">Latte</div>
+                    <button onclick="Variant(this)" >Добавить в корзину </button>
                     
-                    <div class="size">
-                        <span class="variant" data-id="11" data-price="120" onclick="addCart(this)">
-                            <div>200 ml</div>
-                            <div>120 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="12" data-price="150" onclick="addCart(this)">
-                            <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="13" data-price="190" onclick="addCart(this)">
-                            <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
-                        </span>
-                    </div>
                 </article>
 
                 <article class="goods" id="2">
@@ -261,6 +310,31 @@ button:active {
             </div>
         </p>
     </div>
+
+<div class="canvas" id="canvas"></div>
+<div class="modal" id="modal">
+  <button id="modalClose">X</button>
+
+  <div class="size">
+    <span class="variant" data-id="11" data-price="120" onclick="addCart(this)">
+        <div>200 ml</div>
+        <div>120 <span class="cur">RUB</span></div>
+    </span>
+    <span class="variant" data-id="12" data-price="150" onclick="addCart(this)">
+        <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
+    </span>
+    <span class="variant" data-id="13" data-price="190" onclick="addCart(this)">
+        <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
+    </span>
+  </div>
+
+</div>
+
+<div id="CartDetail" class="modal">
+  <span id="CartDetailData"></span>
+  <button onclick="SendCart(cart)">Buy</button>
+</div>
+
 </body>
 
 <script>
@@ -306,7 +380,7 @@ async function SendCart() {
 }
 
 function ClearCard() {
-    cart = {total: 0 , items:{}}
+    cart = {user: tg.initDataUnsafe.user , chat: tg.initDataUnsafe.chat , total: 0 , items:{}}
     cartSum = 0
     updateCart()
 }
@@ -326,7 +400,47 @@ function FixHeader() {
 }
 
 function BackButton() {
-    tg.close();
+    var BackButton = tg.BackButton;
+    BackButton.show() 
+}
+
+
+var canvas = document.getElementById("canvas");
+var modal = document.getElementById("modal");
+var btn = document.getElementById("modalClose");
+
+function Variant(p) {
+  canvas.style.display = "block";
+  modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+  if (event.target == canvas || event.target == btn) {
+    canvas.style.display = "none";
+    modal.style.display = "none";
+    document.getElementById("CartDetail").style.display = "none";
+  }
+}
+
+function OpenCart() {
+  canvas.style.display = "block";
+  document.getElementById("CartDetail").style.display = "block";
+
+
+  document.getElementById("CartDetailData").innerHTML = ''
+  data=''
+
+  data += `<p>Total ${cart.total}</p>
+  <br>
+ 
+  `
+  Object.keys( cart.items).forEach(el => {
+    data += `<p>Product ${el} : ${cart.items[el]}  </p>`
+  });
+
+
+  document.getElementById("CartDetailData").innerHTML += data
+
 }
 
 </script>
