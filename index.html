@@ -343,7 +343,9 @@ button:active {
 
 let tg = window.Telegram.WebApp
 
-let tguser = document.getElementById("cat1").innerHTML = tg.initDataUnsafe.chat.id
+let tguser = tg.initDataUnsafe.chat.id
+
+ document.getElementById("cat1").innerHTML = tguser
     
 let cart = {user: tguser , total: 0 , items:{}}
 let cartSum = 0
