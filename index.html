@@ -342,7 +342,9 @@ button:active {
 
 let tg = window.Telegram.WebApp
 
-let cart = {user: tg.initDataUnsafe.user.id , chat: tg.initDataUnsafe.chat.id , total: 0 , items:{}}
+document.getElementById("cat1").innerHTML = tg.initDataUnsafe.user
+    
+let cart = {user: tg.initDataUnsafe.user , chat: tg.initDataUnsafe.chat , total: 0 , items:{}}
 let cartSum = 0
 let cartItems = 0
 
