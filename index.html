@@ -343,11 +343,9 @@ button:active {
 
 let tg = window.Telegram.WebApp
 
-document.getElementById("cat1").innerHTML = tg.initDataUnsafe.chat.id
-
-document.getElementById("cat2").innerHTML = tg.initData
+let tguser = document.getElementById("cat1").innerHTML = tg.initDataUnsafe.chat.id
     
-let cart = {user: tg.initDataUnsafe.user.id , total: 0 , items:{}}
+let cart = {user: tguser , total: 0 , items:{}}
 let cartSum = 0
 let cartItems = 0
 
@@ -389,7 +387,7 @@ async function SendCart() {
 }
 
 function ClearCard() {
-    cart = {user: tg.initDataUnsafe.user , chat: tg.initDataUnsafe.chat , total: 0 , items:{}}
+    cart = {user: tguser , total: 0 , items:{}}
     cartSum = 0
     updateCart()
 }
