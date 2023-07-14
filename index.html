@@ -264,6 +264,7 @@ button:active {
         <button class="button-17">Bakery</button>
     </div>
     <div id="products">
+        <p id="cat2"></p>
         <p id="cat1">Category 1
             <div class="catprod">
                 <article class="goods" id="1">
@@ -342,7 +343,9 @@ button:active {
 
 let tg = window.Telegram.WebApp
 
-document.getElementById("cat1").innerHTML = tg.initDataUnsafe.user
+document.getElementById("cat1").innerHTML = tg.initDataUnsafe.user.id
+
+document.getElementById("cat2").innerHTML = tg.initData
     
 let cart = {user: tg.initDataUnsafe.user , chat: tg.initDataUnsafe.chat , total: 0 , items:{}}
 let cartSum = 0
