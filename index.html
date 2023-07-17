@@ -37,10 +37,6 @@ header{
   width: 100%
 }
 
-.sticky + .content {
-  /*padding-top: 102px;*/
-}
-
 .products{
     max-width: 100%;
     max-height: 100%;
@@ -268,24 +264,24 @@ button:active {
         <p id="cat1">Category 1
             <div class="catprod">
                 <article class="goods" id="1">
-                    <img src="https://i.ibb.co/0tD0NGQ/3-png.jpg" alt="latte">
+                    <img src="https://i.ibb.co/0tD0NGQ/1.png.jpg" alt="latte">
                     <div class="name">Latte</div>
                     <button onclick="Variant(this)" >Добавить в корзину </button>
                     
                 </article>
 
                 <article class="goods" id="2">
-                    <img src="https://i.ibb.co/ZXDh5xH/2-png.png" alt="Mokko">
+                    <img src="https://i.ibb.co/ZXDh5xH/2.png.png" alt="Mokko">
                     <div class="name">Mokko</div>
                     
                     <div class="size">
-                        <span class="variant" data-id="21" data-price="120" onclick="addCart(this)">
+                        <span class="variant" data-id="21" data-price="120" data-name="Mokko 200 ml" onclick="addCart(this)">
                             <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
                         </span>
-                        <span class="variant" data-id="22" data-price="150" onclick="addCart(this)">
+                        <span class="variant" data-id="22" data-price="150" data-name="Mokko 300 ml" onclick="addCart(this)">
                             <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
                         </span>
-                        <span class="variant" data-id="23" data-price="190" onclick="addCart(this)">
+                        <span class="variant" data-id="23" data-price="190" data-name="Mokko 400 ml" onclick="addCart(this)">
                             <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
                         </span>
                     </div>
@@ -296,14 +292,13 @@ button:active {
                     <div class="name">Espresso</div>
                     
                     <div class="size">
-                        <span class="variant" data-id="41" data-price="120" onclick="addCart(this)">
-                            <div>200 ml</div>
-                            <div>120 <span class="cur">RUB</span></div>
+                        <span class="variant" data-id="41" data-price="120" data-name="Espresso 200 ml" onclick="addCart(this)">
+                            <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
                         </span>
-                        <span class="variant" data-id="42" data-price="150" onclick="addCart(this)">
+                        <span class="variant" data-id="42" data-price="150" data-name="Espresso 300 ml" onclick="addCart(this)">
                             <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
                         </span>
-                        <span class="variant" data-id="43" data-price="190" onclick="addCart(this)">
+                        <span class="variant" data-id="43" data-price="190" data-name="Espresso 400 ml" onclick="addCart(this)">
                             <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
                         </span>
                     </div>
@@ -318,14 +313,13 @@ button:active {
   <button id="modalClose">X</button>
 
   <div class="size">
-    <span class="variant" data-id="11" data-price="120" onclick="addCart(this)">
-        <div>200 ml</div>
-        <div>120 <span class="cur">RUB</span></div>
+    <span class="variant" data-id="11" data-price="120" data-name="Latte 200 ml" onclick="addCart(this)">
+        <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
     </span>
-    <span class="variant" data-id="12" data-price="150" onclick="addCart(this)">
+    <span class="variant" data-id="12" data-price="150" data-name="Latte 300 ml" onclick="addCart(this)">
         <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
     </span>
-    <span class="variant" data-id="13" data-price="190" onclick="addCart(this)">
+    <span class="variant" data-id="13" data-price="190" data-name="Latte 400 ml" onclick="addCart(this)">
         <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
     </span>
   </div>
@@ -341,20 +335,36 @@ button:active {
 
 <script>
 
-let tg = window.Telegram.WebApp
+let tg
+let tguser
 
-let tguser = tg.initDataUnsafe.user.id
+try{
+tg = window.Telegram.WebApp
+tguser = tg.initDataUnsafe.user.id
+}catch{
 
-document.getElementById("cat1").innerHTML = tguser
+}
     
 let cart = {user: tguser , total: 0 , items:{}}
 let cartSum = 0
 let cartItems = 0
 
+
 function addCart(el) {
     console.log(el.dataset.id)
 
-    cart.items[el.dataset.id] = (cart.items[el.dataset.id]+1) || 1 ;
+    let item = {
+      qua:0,
+      price:el.dataset.price,
+      name:el.dataset.name
+    }
+
+    if (cart.items[el.dataset.id]) {
+      cart.items[el.dataset.id].qua += 1
+    }else{
+      cart.items[el.dataset.id] = item
+      cart.items[el.dataset.id].qua = 1
+    }
 
     cartSum += parseInt(el.dataset.price)
     cart["total"] = cartSum
