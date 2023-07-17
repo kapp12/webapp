@@ -453,8 +453,8 @@ function OpenCart() {
   <br>
  
   `
-  Object.keys( cart.items).forEach(el => {
-    data += `<p>Product ${el} : ${cart.items[el]}  </p>`
+  Object.keys( cart.items ).forEach(el => {
+    data += `<p>${cart.items[el].name} , ${cart.items[el].price} RUB - ${cart.items[el].qua} </p>`
   });
 
 
