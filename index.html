@@ -439,7 +439,7 @@ function updateCart() {
 
 async function SendCart() {
 
-    const res = await fetch("https://go-lake.vercel.app/api/order", 
+  const res = await fetch("https://go-lake.vercel.app/api/order", 
 {
     mode: 'no-cors',
     cache: 'no-cache',
@@ -451,10 +451,12 @@ async function SendCart() {
     body: JSON.stringify(cart)
 })
 
+console.log(res.status)
+
  if (res.status == 200){
     console.log("Order Send");
-    tg.close()
     ClearCard()
+    tg.close()
  }else{
   warning("Ошибка, попробуйте ещё раз. " + res.status)
  }
