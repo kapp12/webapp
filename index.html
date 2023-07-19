@@ -451,7 +451,7 @@ async function SendCart() {
     body: JSON.stringify(cart)
 })
 
-const text = await response.text()
+const text = await res.text()
 
  if (text == "OK"){
     console.log("Order Send");
