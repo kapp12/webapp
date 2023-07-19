@@ -446,8 +446,6 @@ async function SendCart() {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*", 
-      "Access-Control-Allow-Headers": "access-control-allow-origin, access-control-allow-headers"
     },
     method: "POST",
     body: JSON.stringify(cart)
@@ -461,6 +459,8 @@ console.log(text)
     tg.close()
  }else{
   warning("Ошибка, попробуйте ещё раз. ")
+  ClearCard()
+    tg.close()
  }
 
 
