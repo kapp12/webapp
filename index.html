@@ -451,9 +451,9 @@ async function SendCart() {
     body: JSON.stringify(cart)
 })
 
-console.log(res.status)
+const text = await response.text()
 
- if (res.status == 200){
+ if (text == "OK"){
     console.log("Order Send");
     ClearCard()
     tg.close()
