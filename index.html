@@ -455,9 +455,11 @@ async function SendCart() {
     console.log("Order Send");
     tg.close()
     ClearCard()
+ }else{
+  warning("Ошибка, попробуйте ещё раз")
  }
 
-warning("Ошибка, попробуйте ещё раз")
+
 
 }
 
