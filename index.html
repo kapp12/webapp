@@ -445,7 +445,9 @@ async function SendCart() {
     cache: 'no-cache',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*", 
+      "Access-Control-Allow-Headers": "access-control-allow-origin, access-control-allow-headers"
     },
     method: "POST",
     body: JSON.stringify(cart)
