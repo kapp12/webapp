@@ -451,7 +451,7 @@ async function SendCart() {
     body: JSON.stringify(cart)
 })
 
- if (res.status == 203){
+ if (res.status == 200){
     console.log("Order Send");
     tg.close()
     ClearCard()
