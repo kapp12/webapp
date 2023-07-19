@@ -452,7 +452,7 @@ async function SendCart() {
 })
 
 const text = await res.text()
-
+console.log(text)
  if (text == "OK"){
     console.log("Order Send");
     ClearCard()
