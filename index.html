@@ -515,19 +515,19 @@ async function SendCart() {
     mode: 'no-cors',
     cache: 'no-cache',
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     method: "POST",
     body: JSON.stringify(cart)
 })
 
- if (res.status == 203){
+ if (res.status == 200){
     console.log("Order Send");
     tg.close()
  }
 
  ClearCard()
+ tg.close()
 
 }
 
