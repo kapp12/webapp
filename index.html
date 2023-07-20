@@ -515,19 +515,19 @@ async function SendCart() {
     mode: 'no-cors',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     },
     method: "POST",
     body: JSON.stringify(cart)
 })
-
+console.log(res)
  if (res.status == 200){
     console.log("Order Send");
     tg.close()
  }
-
- ClearCard()
  tg.close()
+ ClearCard()
 
 }
 
