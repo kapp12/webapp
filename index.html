@@ -21,7 +21,6 @@ header{
 }    
 
 .wrap-header{
-  border-radius: 8px;
   background-color: #d0c9c0;
   padding: 8px;
   position: relative;
@@ -86,7 +85,8 @@ img{
     border-radius: 8px;
     margin: 10px;
     padding: 10px;
-   /* position: relative;*/
+    display: flex;
+    flex-direction: column;
 }
 
 button {
@@ -239,7 +239,8 @@ button:active {
   /*height: 60%;  Full height */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+  font-size: 16px;
 }
 
 @keyframes animatetop {
@@ -281,15 +282,33 @@ button:active {
 
 .warning{
   display: none;
-  z-index: 10000;
+  z-index: 999;
   position: fixed;
-  min-height: 30%;
+  min-height: 80%;
   left: 0;
-  top: 20%;
+  top: 10%;
   width: 100%;
   background-color: rgb(210, 140, 140);
   font-size: 28px;
   padding: 10px;
+}
+
+.name{
+  font-size: 28px;
+  font-weight: bolder;
+  color: rgb(123, 94, 73);
+  background-color: #d0c9c0;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.cartSKU{
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 </style>
@@ -310,45 +329,56 @@ button:active {
         <p id="cat1">Category 1
             <div class="catprod">
                 <article class="goods" id="1">
-                    <img src="https://i.ibb.co/0tD0NGQ/1.png.jpg" alt="latte">
+                    <img src="https://i.ibb.co/DWJPcPy/1.png" alt="latte">
                     <div class="name">Latte</div>
                     <button onclick="Variant(this)" >Add to cart</button>
                     
                 </article>
 
                 <article class="goods" id="2">
-                    <img src="https://i.ibb.co/ZXDh5xH/2.png.png" alt="Mokko">
+                    <img src="https://i.ibb.co/Q8bcHP2/2.png" alt="Mokko">
                     <div class="name">Mokko</div>
                     
                     <div class="size">
-                        <span class="variant" data-id="21" data-price="120" data-name="Mokko 200 ml" onclick="addCart(this)">
-                            <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="22" data-price="150" data-name="Mokko 300 ml" onclick="addCart(this)">
+                        <button class="variant" data-id="21" data-price="120" data-name="Mokko 200 ml" onclick="addCart(this)">
+                            <div>200 ml</div><div> 120 <span class="cur">RUB</span></div>
+                        </button>
+                        <button class="variant" data-id="22" data-price="150" data-name="Mokko 300 ml" onclick="addCart(this)">
                             <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="23" data-price="190" data-name="Mokko 400 ml" onclick="addCart(this)">
+                        </button>
+                        <button class="variant" data-id="23" data-price="190" data-name="Mokko 400 ml" onclick="addCart(this)">
                             <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
-                        </span>
+                        </button>
                     </div>
                 </article>
 
                 <article class="goods" id="4">
-                    <img src="https://i.ibb.co/0tD0NGQ/3-png.jpg" alt="Espresso">
+                    <img src="https://i.ibb.co/VHKFW7C/4.jpg" alt="Espresso">
                     <div class="name">Espresso</div>
                     
                     <div class="size">
-                        <span class="variant" data-id="41" data-price="120" data-name="Espresso 200 ml" onclick="addCart(this)">
+                        <button class="variant" data-id="41" data-price="120" data-name="Espresso 200 ml" onclick="addCart(this)">
                             <div>200 ml</div><div>120 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="42" data-price="150" data-name="Espresso 300 ml" onclick="addCart(this)">
+                        </button>
+                        <button class="variant" data-id="42" data-price="150" data-name="Espresso 300 ml" onclick="addCart(this)">
                             <div>300 ml</div><div>150 <span class="cur">RUB</span></div>
-                        </span>
-                        <span class="variant" data-id="43" data-price="190" data-name="Espresso 400 ml" onclick="addCart(this)">
+                        </button>
+                        <button class="variant" data-id="43" data-price="190" data-name="Espresso 400 ml" onclick="addCart(this)">
                             <div>400 ml</div><div>190 <span class="cur">RUB</span></div>
-                        </span>
+                        </button>
                     </div>
                 </article>
+
+                <article class="goods" id="8">
+                  <img src="https://i.ibb.co/0sYXt5z/crua.jpg" alt="Croissant">
+                  <div class="name">Croissant</div>
+                  
+                  <div class="size">
+                      <button class="variant" data-id="81" data-price="100" data-name="Croissant" onclick="addCart(this)">
+                          <div>200 ml</div><div>100 <span class="cur">RUB</span></div>
+                      </button>
+                  </div>
+              </article>
 
             </div>
         </p>
@@ -433,37 +463,71 @@ function addCart(el) {
     updateCart()
 }
 
+function addCartByID(id) {
+    console.log(id)
+
+    if (cart.items[id]) {
+      cart.items[id].qua += 1
+    }else{
+      cart.items[id] = item
+      cart.items[id].qua = 1
+    }
+
+    cartSum += parseInt(cart.items[id].price)
+    cart["total"] = cartSum
+
+    updateCart()
+
+
+    ReViewCart()
+}
+
+function remoteCartByID(id) {
+    console.log(id)
+
+    cartSum -= parseInt(cart.items[id].price)
+    cart["total"] = cartSum
+
+    if (cart.items[id].qua > 1) {
+      cart.items[id].qua -= 1
+    }else{
+      delete cart.items[id]
+      document.getElementById(`cartSKU${id}`).remove()
+    }
+
+
+    updateCart()
+
+
+    ReViewCart()
+}
+
+
+
 function updateCart() {
     document.getElementById("cartSum").innerHTML = cartSum
 }
 
 async function SendCart() {
 
-  const res = await fetch("https://go-lake.vercel.app/api/order", 
+    const res = await fetch("https://go-lake.vercel.app/api/order", 
 {
     mode: 'no-cors',
     cache: 'no-cache',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     method: "POST",
     body: JSON.stringify(cart)
 })
 
-const text = await res.text()
-console.log(text)
- if (text == "OK"){
+ if (res.status == 203){
     console.log("Order Send");
-    ClearCard()
-    tg.close()
- }else{
-  warning("Ошибка, попробуйте ещё раз. ")
-  ClearCard()
     tg.close()
  }
 
-
+ ClearCard()
 
 }
 
@@ -489,8 +553,7 @@ function FixHeader() {
 }
 
 function BackButton() {
-    var BackButton = tg.BackButton;
-    BackButton.show() 
+    tg.close();
 }
 
 var canvas = document.getElementById("canvas");
@@ -517,6 +580,10 @@ function OpenCart() {
   document.getElementById("CartDetail").style.display = "flex";
   
 
+  ReViewCart()
+}
+
+function ReViewCart() {
   if (cart.total > 0){
   document.getElementById("buy-btn").style.display = "block";
 
@@ -524,8 +591,8 @@ function OpenCart() {
   data=''
 
   
-  Object.keys( cart.items ).forEach(el => {
-    data += `<p>${cart.items[el].name} , ${cart.items[el].price} RUB - ${cart.items[el].qua} </p>`
+  Object.keys( cart.items ).forEach(el => {                                                  
+    data += `<p class='cartSKU' id='cartSKU${el}'>${cart.items[el].name }  , ${cart.items[el].price} RUB   <button onclick="remoteCartByID(${el})">-</button>   ${cart.items[el].qua}   <button onclick="addCartByID(${el})">+</button> </p>`
   });
 
   data += `<p>Total <b>${cart.total} </b> RUB</p>`
@@ -539,3 +606,4 @@ function OpenCart() {
 </script>
 
 </html>
+
